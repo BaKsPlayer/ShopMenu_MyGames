@@ -32,6 +32,11 @@ public class OffersContentController : MonoBehaviour
         dragHandler.OnEndDragInput += EndDrag;
     }
 
+    private void OnEnable()
+    {
+        ResetToZero();
+    }
+
     private void OnDestroy()
     {
         dragHandler.OnBeginDragInput -= BeginDrag;
@@ -46,6 +51,12 @@ public class OffersContentController : MonoBehaviour
     private void EndDrag()
     {
         isMoving = true;
+    }
+
+    private void ResetToZero()
+    {
+        currentIndex = 0;
+        rectTransform.localPosition = new Vector2(-currentIndex * range, rectTransform.localPosition.y);
     }
 
     private void Update()
